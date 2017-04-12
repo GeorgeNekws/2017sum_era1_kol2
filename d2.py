@@ -138,43 +138,36 @@ def main():
 			
 			with open("file", "r") as f:
 				for line in f:
-					found = 0
+					found = 0							# the student does not exist in our system
 					info_list = line.split(" ")
 		
 					st = info_list[0]					#student name
 					new_grade = float(info_list[1])
 					course = info_list[2].rstrip('\n')
 									
-					
+					# if the student exists in our system we just give him the new grade
 					if course == 'Python':
 						for student in python_dict:
 							if student == st:
 								found = 1
 								python_dict.get(student).append(new_grade)
-								#print python_dict
-							#else:
-								#print 'This student does not attend this course'
+
 		
 					elif course == 'Java':
 						for student in java_dict:
 							if student == st:
 								found = 1
 								java_dict.get(student).append(new_grade)
-								#print java_dict
-							#else:
-								#print 'This student does not attend this course'
+
 		
 					elif course == 'Physics':
 						for student in physics_dict:
 							if student == st:
 								found = 1
 								physics_dict.get(student).append(new_grade)
-								#print physics_dict
-							#else:
-								#print 'This student does not attend this course'
 								
-					
-					if found == 0:							# if the student is new we insert him in the dict firstly
+					# if the student does NOT exists in our system we create him and we give him a grade in the appropriate course
+					if found == 0:							
 						if course == 'Python':
 							python_dict[st] = [new_grade]
 		
