@@ -21,6 +21,7 @@ def main():
 		print 'choose 2 to take AVG of a student in every course'
 		print 'choose 3 to enter a new student to a course'
 		print 'choose 4 to insert a grade for a student'
+		print 'choose 5 to insert data from file'
 		print 'press zero (0) to exit\n'
 		button = int(raw_input('Choose one of the options above : \n'))
 		
@@ -132,7 +133,64 @@ def main():
 						print physics_dict
 					else:
 						print 'This student does not attend this course'
+						
+		elif button == 5:
+			
+			with open("file", "r") as f:
+				for line in f:
+					found = 0
+					info_list = line.split(" ")
+		
+					st = info_list[0]					#student name
+					new_grade = float(info_list[1])
+					course = info_list[2].rstrip('\n')
+									
+					
+					if course == 'Python':
+						for student in python_dict:
+							if student == st:
+								found = 1
+								python_dict.get(student).append(new_grade)
+								#print python_dict
+							#else:
+								#print 'This student does not attend this course'
+		
+					elif course == 'Java':
+						for student in java_dict:
+							if student == st:
+								found = 1
+								java_dict.get(student).append(new_grade)
+								#print java_dict
+							#else:
+								#print 'This student does not attend this course'
+		
+					elif course == 'Physics':
+						for student in physics_dict:
+							if student == st:
+								found = 1
+								physics_dict.get(student).append(new_grade)
+								#print physics_dict
+							#else:
+								#print 'This student does not attend this course'
+								
+					
+					if found == 0:							# if the student is new we insert him in the dict firstly
+						if course == 'Python':
+							python_dict[st] = [new_grade]
+		
+						elif course == 'Java':
+							java_dict[st] = [new_grade]
+		
+						elif course == 'Physics':
+							physics_dict[st] = [new_grade]
 
+						else:
+							print "The lesson you entered does not exists"	
+		
+								
+		print python_dict
+		print java_dict
+		print physics_dict
 				
 if __name__ == "__main__":
 	main()
