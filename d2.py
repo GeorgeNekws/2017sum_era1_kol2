@@ -1,7 +1,7 @@
 
 def main():
 	
-	python_dict = { "Geo" :[7.0,8.0,10.0] , 'Nick':[5.0,9.0] }
+	python_dict = { "Geo" :[7.0,8.0,10.0] , 'Nick':[9.0] }
 	java_dict = { "Tom" :[9.0,8.0,5.0] , 'Nox':[4.0,8.0,5.0,9.0], 'Lena':[2.0,9.0] }
 	physics_dict = { "Tom" :[4.0,8.0,4.0] , 'Geo':[8.0,9.0], 'Lena':[9.0,9.0] }
 	
@@ -19,8 +19,10 @@ def main():
 		
 		print 'choose 1 to take AVG of a student in a course'
 		print 'choose 2 to take AVG of a student in every course'
-		print 'press zero (0) to exit'
-		button = int(raw_input('Choose one of the options above : '))
+		print 'choose 3 to enter a new student to a course'
+		print 'choose 4 to insert a grade for a student'
+		print 'press zero (0) to exit\n'
+		button = int(raw_input('Choose one of the options above : \n'))
 		
 		if button == 1:
 			
@@ -45,6 +47,7 @@ def main():
 								add = add + grades[i]
 								
 							avg = add / (i+1)						# i calculate the avg
+							print 'AVG : '
 							print avg
 							break
 					if found == 0:
@@ -78,6 +81,57 @@ def main():
 			avg = add / (num_of_grades)							# calculation of avg of all courses
 			print 'Avg is : '
 			print avg
+			
+		elif button == 3:
+			
+			new_st = raw_input( 'Enter new student to a course : ')
+			course = raw_input( 'Enter the course : ')
+	
+			if course == 'Python':
+				python_dict[new_st] = []
+				print python_dict
+		
+			elif course == 'Java':
+				java_dict[new_st] = []
+				print physics_dict
+		
+			elif course == 'Physics':
+				physics_dict[new_st] = []
+				print physics_dict
+			
+			else:
+				print "The lesson you entered does not exists"	
+				
+				
+		elif button == 4:
+			
+			st = raw_input( 'Enter the student name : ')
+			course = raw_input( 'Enter the course : ')
+			new_grade = float(raw_input( 'Enter new grade to a course : '))
+	
+			if course == 'Python':
+				for student in python_dict:
+					if student == st:
+						python_dict.get(student).append(new_grade)
+						print python_dict
+					else:
+						print 'This student does not attend this course'
+		
+			elif course == 'Java':
+				for student in java_dict:
+					if student == st:
+						java_dict.get(student).append(new_grade)
+						print java_dict
+					else:
+						print 'This student does not attend this course'
+		
+			elif course == 'Physics':
+				for student in physics_dict:
+					if student == st:
+						physics_dict.get(student).append(new_grade)
+						print physics_dict
+					else:
+						print 'This student does not attend this course'
 
 				
 if __name__ == "__main__":
